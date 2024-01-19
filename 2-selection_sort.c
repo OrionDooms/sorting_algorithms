@@ -24,7 +24,7 @@ void selection_sort(int *array, size_t size)
 
 }
 /**
- * swap - A function that swap two integers.
+ * swap2 - A function that swap two integers.
  * @a: Takes in a integer.
  * @b: Takes in a integer.
  * @array: Takes in the array of integers.
@@ -34,7 +34,10 @@ void swap2(int *a, int *b, int *array, size_t size)
 {
 	int temp = *a;
 
-	*a = *b;
-	*b = temp;
-	print_array(array, size);
+	if (a > b)
+	{
+		*a = *b;
+		*b = temp;
+		print_array(array, size);
+	}
 }
