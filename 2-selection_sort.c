@@ -9,19 +9,21 @@ void selection_sort(int *array, size_t size)
 {
 	size_t i = 0, j, select;
 
-	while (i < size - 1)
+	if (size > 1)
 	{
-		select = i, j = i + 1;
-		while (j < size)
+		while (i < size - 1)
 		{
-			if (array[j] < array[select])
-				select = j;
-			j++;
+			select = i, j = i + 1;
+			while (j < size)
+			{
+				if (array[j] < array[select])
+					select = j;
+				j++;
+			}
+			swap2(&array[select], &array[i], array, size);
+			i++;
 		}
-		swap2(&array[select], &array[i], array, size);
-		i++;
 	}
-
 }
 /**
  * swap2 - A function that swap two integers.
