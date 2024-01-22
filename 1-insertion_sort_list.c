@@ -1,42 +1,49 @@
 #include "sort.h"
-
+/**
+ * insertion_sort_list - sorts a doubly linked list of integers
+ * using the Insertion sort algorithm.
+ * @list: Takes in a list of integers.
+ */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *next, *new_list = NULL, *current = *list;
+	listint_t *sort = NULL, *current = *list, *new_node;
 
 	while (current != NULL)
 	{
-		next = current->next;
-		current->prev = current->next = NULL;
-		sorted_list(new_list, current);
-		current = next;
+		new_node = current->next;
+		sort_insert(&sort, current);
+		print_list(sort);
+		current = new_node;
 	}
-	list = new_list;
+	*list = sort;
 }
-
-void sorted_list(listint_t **list, listint_t *new_node)
+/**
+ * sort_insert - Takes the input from insertion_sort and sorts
+ * a doubly linked list of integers using the Insertion sort algorithm.
+ * @head: Takes in a list of integers.
+ * @new_node: Insert current node.
+ */
+void sort_insert(listint_t **head, listint_t *new_node)
 {
 	listint_t *current;
 
-	if (*list->n >= new_node->n)
+	if (*head == NULL || (*head)->n >= new_node->n)
 	{
-		new_node->next = *list;
-		new_node->next->prev = new_node;
-		list = new_node;
+		new_node->next = *head;
+		new_node->prev = NULL;
+		if (*head != NULL)
+			(*head)->prev = new_node;
+		*head = new_node;
 	}
 	else
 	{
-		current = *list;
+		current = *head;
 		while (current->next != NULL && current->next->n < new_node->n)
-		{
 			current = current->next;
-
-		}
 		new_node->next = current->next;
-		if (current->next != NULL)
-			new_node->next->prev = new_node;
-
-		current->next = new_node;
 		new_node->prev = current;
+		if (current->next != NULL)
+			current->next->prev = new_node;
+		current->next = new_node;
 	}
 }
