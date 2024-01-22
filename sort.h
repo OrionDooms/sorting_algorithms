@@ -22,9 +22,12 @@ void bubble_sort(int *array, size_t size);
 void swap(int *a, int *b);
 listint_t *create_listint(const int *array, size_t size);
 void insertion_sort_list(listint_t **list);
-void sorted_list(listint_t **list, listint_t *new_node);
+void sort_insert(listint_t **head, listint_t *new_node);
 void selection_sort(int *array, size_t size);
 void swap2(int *a, int *b, int *array, size_t size);
 void quick_sort(int *array, size_t size);
+void sort(int *array, int *low, int *high);
+int partition(int arr[], int low, int high);
+void shell_sort(int *array, size_t size);
 
 #endif
